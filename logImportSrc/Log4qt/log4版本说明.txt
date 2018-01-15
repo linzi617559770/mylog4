@@ -1,0 +1,31 @@
+v20180111_1
+一、功能 ：1、输出位置：指定输出到控制台，或者文件（文件指定大小当文件大小超过时，新建一个文	   		件填入，或者文件设置更新周期，每到一个周期新建一个日志文件填入）
+
+       2、日志输出格式：（1）TTCCLayout格式：TTCC 布局格式由下列字段组成：
+				Time：时间
+				Thread：线程
+				Category：类别
+				nested diagnostic Context information：嵌套的诊断上下文信息
+			（2）SimpleLayout
+				正如其名，SimpleLayout 比较简单，只包含了日志的级别和消息内容。
+			（3）PatternLayout
+				如果想生成基于模式的特定格式的日志信息，那么可以使用 				PatternLayout 来进行格式化。
+	注意：由于目前没有需要特定的格式的需求因此PatternLayout，只实现部分功能。目前大部分日志
+	      使用TTCCLayout格式和SimpleLayout足够
+
+二、LOG4QT类的再次封装
+    mylog4qt.cpp
+    mylog4qt.hpp
+
+    关于 程序中只需调用 MyLog4qt::initLog4q(MyLog4qt::ttccLayout,MyLog4qt::rollingFileAppender,
+                          Log4Qt::Level::DEBUG_INT);设置对应的参数即可，然后在程序中就可以使用	
+			  MyLog4qt::logInfo("hello log4qt");
+   			  MyLog4qt::logDebug("hello ");
+    		          MyLog4qt::logWarn("hello l");
+    		          MyLog4qt::logError("hello lo");进行输出了。
+                        调用MyLog4qt::shutdownLog()后 日志就不在输出。知道重新调用 			MyLog4qt::initLog4q
+	注意：（1）在日志输出位置是在达到特定大小时滚动日志文件在调用MyLog4qt::initLog4q前必须			调用MyLog4qt::setFileSizeAndFileNum;设置文件大小和文件个数
+	      （2）在文件输出位置是以指定的频率滚动日志文件时，在调用MyLog4qt::initLog4前必须调				用MyLog4qt::setSaveFilePeriod设置指定频率滚动日志文件	
+
+三、项目中调用LOG4QT类的再次封装库	
+    
