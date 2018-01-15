@@ -9,11 +9,11 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     //使用控制台
-    /*MyLog4qt::initLog4qt(MyLog4qt::ttccLayout,MyLog4qt::consoleAppender,Log4Qt::Level::DEBUG_INT);
+    MyLog4qt::initLog4qt(MyLog4qt::ttccLayout,MyLog4qt::consoleAppender,Log4Qt::Level::DEBUG_INT);
     MyLog4qt::logInfo("hello log4qt");
     MyLog4qt::logDebug("hello ");
     MyLog4qt::logWarn("hello l");
-    MyLog4qt::logError("hello lo");*/
+    MyLog4qt::logError("hello lo");
 
     //使用文件
     /*MyLog4qt::initLog4qt(MyLog4qt::ttccLayout,MyLog4qt::fileAppender,Log4Qt::Level::DEBUG_INT);
